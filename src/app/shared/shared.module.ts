@@ -6,6 +6,11 @@ import { NpsComponent } from './nps/nps.component';
   imports: [
     CommonModule
   ],
-  declarations: [NpsComponent]
+  declarations: [
+    NpsComponent
+  ],
+  exports: [
+    NpsComponent
+  ]
 })
 export class SharedModule { }
