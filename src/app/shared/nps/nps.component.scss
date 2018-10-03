@@ -1,4 +1,4 @@
-
+@import '../../../assets/style/fonts.scss';
 
 .nps {
     min-height: 180px;
@@ -6,5 +6,32 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    background-image: linear-gradient(to right, #FDEDBB, #FFA384);
+    background-image: linear-gradient(to bottom, rgba(0,255,255, .7), rgba(255, 255, 255, .3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -3px 10px 0 rgba(0,0,0,.0785);
+
+    .nps__content {
+        min-width: 60%;
+        max-width: 60%;
+        min-height: 100px;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            font-family: $font;
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .content__rating {
+            width: 85%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
 }
