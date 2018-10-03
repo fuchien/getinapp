@@ -14,4 +14,8 @@ export class NpsComponent implements OnInit {
   ngOnInit() {
   }
 
+  public ratingNumberSelected(ratingNumber: number): void {
+    console.log(ratingNumber)
+  }
+
 }

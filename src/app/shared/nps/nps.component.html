@@ -2,7 +2,8 @@
   <div class="nps__content">
     <h2>Numa escala de 1 a 10, qual a chance de voce recomendar o Get In para um amigo?</h2>
     <div class="content__rating">
-      <app-nps-rating-number *ngFor="let ratingNumber of ratingNumbers" [ratingNumber]="ratingNumber"></app-nps-rating-number>
+      <app-nps-rating-number *ngFor="let ratingNumber of ratingNumbers"
+        [ratingNumber]="ratingNumber" (ratingNumberSelected)="ratingNumberSelected($event)"></app-nps-rating-number>
     </div>
   </div>
 </div>
