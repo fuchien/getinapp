@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nps-rating-number',
@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NpsRatingNumberComponent implements OnInit {
 
   @Input() ratingNumber: number;
+  @Output() ratingNumberSelected: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public emitRatingNumberSelected(ratingNumber: number): void {
+    this.ratingNumberSelected.emit(ratingNumber);
   }
 
 }
