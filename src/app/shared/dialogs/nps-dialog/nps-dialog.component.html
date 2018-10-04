@@ -1,0 +1,10 @@
+<div class="nps__dialog">
+  <img *ngIf="dialogData.ratingNumber > 8" src="./assets/icons/emojis/excellent.png" alt="Emoji excellent">
+  <img *ngIf="dialogData.ratingNumber === 7 || dialogData.ratingNumber === 8" src="./assets/icons/emojis/good.png" alt="Emoji good">
+  <img *ngIf="dialogData.ratingNumber < 7" src="./assets/icons/emojis/ok.png" alt="Emoji ok">
+  <h2>Você nos deu nota {{ dialogData.ratingNumber }}!</h2>
+  <h5>Dicas? Feedbacks? Ou só um comentário?</h5>
+  <h5>Pode escrever aqui para a gente!</h5>
+  <textarea cols="30" rows="5" placeholder="Escreva seu comentário aqui"></textarea>
+  <button mat-flat-button color="primary">ENVIAR</button>
+</div>

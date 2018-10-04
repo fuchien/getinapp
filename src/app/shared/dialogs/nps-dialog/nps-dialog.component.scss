@@ -1,0 +1,37 @@
+@import '../../../../assets/style/fonts.scss';
+
+.nps__dialog {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-family: $font;
+
+    img {
+        height: 50px; 
+    }
+
+    h2 {
+        font-size: 35px;
+        margin: 25px;
+    }
+
+    h5 {
+        font-size: 16px;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    textarea {
+        min-width: 90%;
+        margin: 25px auto;
+        padding: 24px;
+        border-radius: 6px;
+        border: 1px solid rgba(0,139,139, 0.4);
+    }
+
+    button {
+        min-width: 50%;
+        font-size: 13px;
+        border-radius: 5px;
+    }
+}
