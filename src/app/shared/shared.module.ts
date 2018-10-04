@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // COMPONENTS
 import { NpsComponent } from './components/nps/nps.component';
@@ -12,7 +13,8 @@ import { AngularMaterialModule } from './../angular-material.module';
 @NgModule({
   imports: [
     AngularMaterialModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     NpsComponent,
