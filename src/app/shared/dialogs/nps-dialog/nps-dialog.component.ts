@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 
 export interface IDialogData {
@@ -12,10 +13,16 @@ export interface IDialogData {
 })
 export class NpsDialogComponent implements OnInit {
 
+  public npsForm: FormGroup;
+  public ratingSent: boolean = false;
+
   constructor(
     public dialogRef: MatDialogRef<NpsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: IDialogData
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public dialogData: IDialogData,
+    private fb: FormBuilder
+  ) {
+    this.createForm();
+  }
 
   ngOnInit() {
   }
@@ -29,6 +36,24 @@ export class NpsDialogComponent implements OnInit {
       ratingNumber
     }
     return options;
+  }
+
+  public createForm(): void {
+    this.npsForm = this.fb.group({
+      ratingComment: ['', [Validators.required]],
+      ratingNumber: [this.dialogData.ratingNumber]
+    });
+  }
+
+  public sendComment(): void {
+    if (!this.npsForm.valid) {
+      return;
+    }
+    this.ratingSent = true;
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close(this.npsForm.value);
   }
 
 }
