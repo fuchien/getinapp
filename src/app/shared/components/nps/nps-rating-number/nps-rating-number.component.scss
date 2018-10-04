@@ -1,4 +1,4 @@
-@import '../../../../assets/style/fonts.scss';
+@import '../../../../../assets/style/fonts.scss';
 
 .nps__number {
     display: flex;
@@ -15,6 +15,12 @@
     &:hover {
         box-shadow: 0 0 0 rgba(0,139,139, 0.8);
         animation: pulse 2s infinite;
+    }
+
+    &:active,
+    &:focus {
+        background-color: rgba(0,139,139, 0.8);
+        color: #fff;
     }
 
     @keyframes pulse {
