@@ -7,15 +7,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NpsRatingNumberComponent implements OnInit {
 
-  @Input() ratingNumber: number;
-  @Output() ratingNumberSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Input() ratingNumber: string;
+  @Output() ratingNumberSelected: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
 
-  public emitRatingNumberSelected(ratingNumber: number): void {
+  public emitRatingNumberSelected(ratingNumber: string): void {
     this.ratingNumberSelected.emit(ratingNumber);
   }
 
