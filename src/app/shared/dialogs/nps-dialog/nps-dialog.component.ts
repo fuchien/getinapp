@@ -2,8 +2,16 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 
+// INTERFACES
+import { IResponse } from './../../../interfaces/http-response/http-response.interface';
+
+// SERVICES
+import { HttpService } from './../../services/http-service/http.service';
+import { SnackbarService } from './../../services/snackbar/snackbar.service';
+
 export interface IDialogData {
-  ratingNumber: number;
+  id: string;
+  ratingNumber: string;
 }
 
 @Component({
@@ -14,12 +22,15 @@ export interface IDialogData {
 export class NpsDialogComponent implements OnInit {
 
   public npsForm: FormGroup;
+  public ratingSending: boolean = false;
   public ratingSent: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<NpsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: IDialogData,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private httpService: HttpService,
+    private snackBar: SnackbarService
   ) {
     this.createForm();
   }
@@ -27,13 +38,14 @@ export class NpsDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  public static getDataConfig(ratingNumber: number): MatDialogConfig {
+  public static getDataConfig(obj: {ratingNumber: string, id: string}): MatDialogConfig {
     const options = new MatDialogConfig();
     options.autoFocus = true;
     options.disableClose = true;
     options.width = '543px';
     options.data = {
-      ratingNumber
+      ratingNumber: obj.ratingNumber,
+      id: obj.id
     }
     return options;
   }
@@ -49,7 +61,21 @@ export class NpsDialogComponent implements OnInit {
     if (!this.npsForm.valid) {
       return;
     }
-    this.ratingSent = true;
+    const body = {
+      comment: this.npsForm.get('ratingComment').value,
+      id: this.dialogData.id
+    };
+    this.ratingSending = true;
+    this.httpService.insert(body).subscribe(
+      (response: IResponse) => {
+        this.ratingSent = true;
+        this.ratingSending = false;
+      },
+      (err: Error) => {
+        this.ratingSending = false;
+        this.snackBar.openSnackBar('Erro ao mandar o comentário!', 'Fechar');
+      }
+    )
   }
 
   public closeDialog(): void {

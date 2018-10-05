@@ -6,7 +6,10 @@
   <h5>Dicas? Feedbacks? Ou só um comentário?</h5>
   <h5>Pode escrever aqui para a gente!</h5>
   <textarea cols="30" rows="5" formControlName="ratingComment" placeholder="Escreva seu comentário aqui"></textarea>
-  <button mat-flat-button (click)="sendComment()" color="primary">ENVIAR</button>
+  <button mat-flat-button (click)="sendComment()" *ngIf="!ratingSending; else sending" color="primary">ENVIAR</button>
+  <ng-template #sending>
+    <mat-spinner diameter="30"></mat-spinner>
+  </ng-template>
 </div>
 <ng-template #thanksMsg>
   <div class="nps__dialog nps__dialog__thanks">
