@@ -1,9 +1,12 @@
 <div class="nps" [class.hide]="ratingSent">
   <div class="nps__content">
     <h2>Numa escala de 1 a 10, qual a chance de voce recomendar o Get In para um amigo?</h2>
-    <div class="content__rating">
+    <div class="content__rating" *ngIf="!ratingNumberSending; else sending">
       <app-nps-rating-number *ngFor="let ratingNumber of ratingNumbers"
         [ratingNumber]="ratingNumber" (ratingNumberSelected)="ratingNumberSelected($event)"></app-nps-rating-number>
     </div>
+    <ng-template #sending>
+      <mat-spinner diameter="30"></mat-spinner>
+    </ng-template>
   </div>
 </div>
